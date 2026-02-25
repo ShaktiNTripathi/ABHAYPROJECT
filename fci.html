@@ -118,6 +118,17 @@ a.main_logo {
         font-size:20px;
         display:block;
     }
+    .selected-banner{
+        display:none;
+        margin: 15px 0;
+        padding: 14px;
+        border-radius: 8px;
+        background: #dff0d8;
+        color: #2d662d;
+        text-align:center;
+        font-size: 28px;
+        font-weight: 700;
+    }
 
 </style>
 <script src="./fci_files/kendo.custom.js.download"></script>
@@ -147,7 +158,7 @@ a.main_logo {
                         <div class="form-group">
                         <div class="action-btns">
                         <button type="button" onclick="return validateFilter();" class="btn btn-primary">Get Results</button>
-                        <!-- <a href="./employee-input.html" class="btn btn-default" style="margin-left:8px;">Add Employee Data</a> -->
+                        <a href="./employee-input.html" class="btn btn-default" style="margin-left:8px;">Add Employee Data</a>
                         </div>
                         </div>
                     </div>
@@ -192,6 +203,7 @@ a.main_logo {
                 <div id="download-er">
                 <h4 class="pdf-heading">ER Sheet</h4>
                 <div class="tab_employee" id="tab_name" style="display:none">
+	                <div id="selected_banner" class="selected-banner">Congratulation your are selected</div>
                 	<div class="last_updated" style="text-align: right"><span class="etitle">Last Updated on: </span> <span id="last_updated" class="oeid"></span>
                     </div>
                 <div class="row">
@@ -202,22 +214,7 @@ a.main_logo {
                     <div class="col-md-12">
                         <div class="box no-border">
                             <div class="row box-body profile-block">
-                                <div class="col-sm-12 col-md-2 mt-15 margin-r-0 cardex-image-section text-center">
-                                    <div class=" profile-img_wrap ">
-                                        <div class="profile-image">
-
-                                            <img src="https://ers.hrmsfci.in/" class="img-responsive" id="src_image" alt="profile image">
-                                            <div class="edit-profile-btn right-0">
-                                                <div class="img-upload">
-                                                    <div class="upload-inner">
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 col-md-9 cardex-filter-section  mbottom mt-15">
+                                <div class="col-sm-12 col-md-12 cardex-filter-section  mbottom mt-15">
                                     <div class="col-md-4 mbottom"><span class="etitle">Employee Name:</span> <span class="enumber" id="employee_name"></span>
                                     </div>
                                     
@@ -244,6 +241,9 @@ a.main_logo {
                                     </div>
 
                                     <div class="col-md-4 mbottom"><span class="etitle"> Present Place Of Posting: </span> <span id="pre_posting" class="oeid"></span>
+                                    </div>
+
+                                    <div class="col-md-4 mbottom"><span class="etitle">Selection Status: </span> <span id="selection_status" class="oeid"></span>
                                     </div>
                                 </div>
                             </div>
@@ -383,6 +383,7 @@ a.main_logo {
             cadre_title: raw.cadre_title || '',
             mode_of_joining: raw.mode_of_joining || '',
             category_title: raw.category_title || '',
+            selected_status: raw.selected_status || 'Selected',
             date_of_birth: raw.date_of_birth || null,
             updated_on: raw.updated_on || null,
             profile_image: raw.profile_image || null,
@@ -562,7 +563,8 @@ a.main_logo {
         document.getElementById("last_updated").innerHTML = formatDateTimeFromValue(employee.updated_on);
         document.getElementById("dob").innerHTML = formatDateFromValue(employee.date_of_birth);
         document.getElementById("pre_posting").innerHTML = employee.office_name || '';
-        $('#src_image').attr('src', 'https://ers.hrmsfci.in/images/user.png');
+        document.getElementById("selection_status").innerHTML = employee.selected_status || 'Selected';
+        $('#selected_banner').show();
 
         var transferList = Array.isArray(employee.transferDetails) ? employee.transferDetails : [];
         for (var transferIndex = 0; transferIndex < transferList.length; transferIndex++) {
@@ -619,6 +621,7 @@ a.main_logo {
 
     function validateFilter() {
         $('#tab_name').hide();
+        $('#selected_banner').hide();
 
         var searchText = $('#emp_number').val();
         if (searchText == '' || searchText.length < 3) {
@@ -642,6 +645,7 @@ a.main_logo {
             if (filtered.length === 0) {
                 $('#no-data').show();
                 $('#table_main_employees').hide();
+                $('#selected_banner').hide();
                 return;
             }
 
@@ -660,6 +664,7 @@ a.main_logo {
                 $("#emp_table tbody").append(emp);
                 emps++;
             }
+            $('#selected_banner').show();
         }).finally(function () {
             hideLoader();
         });

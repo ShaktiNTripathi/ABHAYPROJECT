@@ -58,6 +58,78 @@
         <label>Date of Birth</label>
         <input type="date" class="form-control" id="date_of_birth" />
       </div>
+
+      <div class="col-sm-12">
+        <h4>Transfer Profile</h4>
+      </div>
+      <div class="col-sm-6 form-group">
+        <label>Office</label>
+        <input type="text" class="form-control" id="transfer_office_name" />
+      </div>
+      <div class="col-sm-6 form-group">
+        <label>Designation</label>
+        <input type="text" class="form-control" id="transfer_designation_name" />
+      </div>
+      <div class="col-sm-6 form-group">
+        <label>From Date</label>
+        <input type="date" class="form-control" id="transfer_from_date" />
+      </div>
+      <div class="col-sm-6 form-group">
+        <label>To Date</label>
+        <input type="date" class="form-control" id="transfer_to_date" />
+      </div>
+      <div class="col-sm-6 form-group">
+        <label>Joining Time From Date</label>
+        <input type="date" class="form-control" id="transfer_joining_time_from" />
+      </div>
+      <div class="col-sm-6 form-group">
+        <label>Joining Time Till Date</label>
+        <input type="date" class="form-control" id="transfer_joining_time_to" />
+      </div>
+      <div class="col-sm-6 form-group">
+        <label>Zone</label>
+        <input type="text" class="form-control" id="transfer_zone_name" />
+      </div>
+      <div class="col-sm-6 form-group">
+        <label>Region</label>
+        <input type="text" class="form-control" id="transfer_region_name" />
+      </div>
+
+      <div class="col-sm-12">
+        <h4>Career Growth and Succession Profile</h4>
+      </div>
+      <div class="col-sm-6 form-group">
+        <label>Office</label>
+        <input type="text" class="form-control" id="career_office_name" />
+      </div>
+      <div class="col-sm-6 form-group">
+        <label>Previous Designation</label>
+        <input type="text" class="form-control" id="career_old_designation_name" />
+      </div>
+      <div class="col-sm-6 form-group">
+        <label>New Designation</label>
+        <input type="text" class="form-control" id="career_designation_name" />
+      </div>
+      <div class="col-sm-6 form-group">
+        <label>Date of Appointment to New Post</label>
+        <input type="date" class="form-control" id="career_date_of_appointment" />
+      </div>
+
+      <div class="col-sm-12">
+        <h4>Competency and Learning Profile</h4>
+      </div>
+      <div class="col-sm-6 form-group">
+        <label>Competency Gap</label>
+        <input type="text" class="form-control" id="learning_competency_gap" />
+      </div>
+      <div class="col-sm-6 form-group">
+        <label>Course Attended</label>
+        <input type="text" class="form-control" id="learning_course_name" />
+      </div>
+      <div class="col-sm-6 form-group">
+        <label>Date of Training</label>
+        <input type="date" class="form-control" id="learning_date_of_training" />
+      </div>
       <div class="col-sm-12 actions">
         <button type="submit" class="btn btn-primary">Save Employee</button>
         <button type="button" class="btn btn-default" id="downloadTxtBtn">Download employees.txt</button>
@@ -178,6 +250,43 @@
     document.getElementById('employeeForm').addEventListener('submit', async function (event) {
       event.preventDefault();
 
+      const transferDetails = [];
+      const careerGrowth = [];
+      const learning = [];
+
+      const transferItem = {
+        office_name: document.getElementById('transfer_office_name').value.trim(),
+        designation_name: document.getElementById('transfer_designation_name').value.trim(),
+        from_date: document.getElementById('transfer_from_date').value || null,
+        to_date: document.getElementById('transfer_to_date').value || null,
+        joining_time_from: document.getElementById('transfer_joining_time_from').value || null,
+        joining_time_to: document.getElementById('transfer_joining_time_to').value || null,
+        zone_name: document.getElementById('transfer_zone_name').value.trim(),
+        region_name: document.getElementById('transfer_region_name').value.trim()
+      };
+      if (transferItem.office_name || transferItem.designation_name || transferItem.from_date || transferItem.to_date || transferItem.joining_time_from || transferItem.joining_time_to || transferItem.zone_name || transferItem.region_name) {
+        transferDetails.push(transferItem);
+      }
+
+      const careerItem = {
+        office_name: document.getElementById('career_office_name').value.trim(),
+        old_designation_name: document.getElementById('career_old_designation_name').value.trim(),
+        designation_name: document.getElementById('career_designation_name').value.trim(),
+        Date_Of_Appoinment_To_New_Post: document.getElementById('career_date_of_appointment').value || null
+      };
+      if (careerItem.office_name || careerItem.old_designation_name || careerItem.designation_name || careerItem.Date_Of_Appoinment_To_New_Post) {
+        careerGrowth.push(careerItem);
+      }
+
+      const learningItem = {
+        Competency_Gap: document.getElementById('learning_competency_gap').value.trim(),
+        course_name: document.getElementById('learning_course_name').value.trim(),
+        Date_Of_Training: document.getElementById('learning_date_of_training').value || null
+      };
+      if (learningItem.Competency_Gap || learningItem.course_name || learningItem.Date_Of_Training) {
+        learning.push(learningItem);
+      }
+
       const employee = {
         employee_name: document.getElementById('employee_name').value.trim(),
         employee_id: document.getElementById('employee_id').value.trim(),
@@ -189,10 +298,11 @@
         mode_of_joining: document.getElementById('mode_of_joining').value.trim(),
         category_title: document.getElementById('category_title').value.trim(),
         date_of_birth: document.getElementById('date_of_birth').value || null,
+        selected_status: 'Selected',
         updated_on: new Date().toISOString(),
-        transferDetails: [],
-        careerGrowth: [],
-        learning: []
+        transferDetails: transferDetails,
+        careerGrowth: careerGrowth,
+        learning: learning
       };
 
       try {
