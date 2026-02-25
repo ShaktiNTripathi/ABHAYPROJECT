@@ -1,0 +1,53 @@
+[
+  {
+    "id": 1,
+    "employee_name": "Rahul Sharma",
+    "employee_id": "FCI001",
+    "designation_name": "Assistant Manager",
+    "office_name": "Delhi Regional Office",
+    "division_name": "HR",
+    "section_name": "Recruitment",
+    "cadre_title": "Group A",
+    "mode_of_joining": "Direct",
+    "category_title": "General",
+    "date_of_birth": "1990-04-15",
+    "updated_on": "2026-02-25T10:30:00",
+    "transferDetails": [],
+    "careerGrowth": [],
+    "learning": []
+  },
+  {
+    "id": 2,
+    "employee_name": "Priya Singh",
+    "employee_id": "FCI002",
+    "designation_name": "Manager",
+    "office_name": "Lucknow Regional Office",
+    "division_name": "Operations",
+    "section_name": "Logistics",
+    "cadre_title": "Group A",
+    "mode_of_joining": "Promotion",
+    "category_title": "OBC",
+    "date_of_birth": "1988-11-05",
+    "updated_on": "2026-02-25T10:35:00",
+    "transferDetails": [],
+    "careerGrowth": [],
+    "learning": []
+  },
+  {
+    "id": 3,
+    "employee_name": "dsfsdfs",
+    "employee_id": "dsfsdf",
+    "designation_name": "dsfds",
+    "office_name": "sdfdsf",
+    "division_name": "dsfsdf",
+    "section_name": "dfsdfdsff",
+    "cadre_title": "dfdsfds",
+    "mode_of_joining": "fsdfdsfdsdf",
+    "category_title": "dsfdsfdsfsd",
+    "date_of_birth": "2026-02-25",
+    "updated_on": "2026-02-25T11:53:40.895Z",
+    "transferDetails": [],
+    "careerGrowth": [],
+    "learning": []
+  }
+]

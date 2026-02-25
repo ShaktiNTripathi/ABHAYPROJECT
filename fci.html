@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<!-- saved from url=(0023)https://ers.hrmsfci.in/ -->
+<html class="font-md k-webkit k-webkit145"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="39L6dfh8SWLXi4A6k1xbLZk7fzbDrW38rF2Bwprp">
+    <link href="https://ers.hrmsfci.in/images/favicon.ico" rel="shortcut icon">
+    <title>FCI HRMS</title>
+<!-- Base Styles -->
+<script src="./fci_files/jquery-2.2.3.min.js.download"></script>
+<script src="./fci_files/chart.min.js.download"></script>
+<!-- Bootstrap -->
+<link href="./fci_files/bootstrap.css" rel="stylesheet">
+<!-- Theme Styles -->
+<link href="./fci_files/style.css" rel="stylesheet">
+<link rel="stylesheet" href="./fci_files/gs.min.css">
+<link rel="stylesheet" href="./fci_files/gs-skins.min.css">
+<!-- <link rel="stylesheet" href="https://ers.hrmsfci.in/css/datepicker3.css"> -->
+<link rel="stylesheet" href="./fci_files/jquery.dataTables.min.css">
+<!-- <link rel="stylesheet" href="https://ers.hrmsfci.in/css/core-hr-module/core-hr.css"> -->
+<link rel="stylesheet" href="./fci_files/select2.min.css">
+<!-- <link rel="stylesheet" href="https://ers.hrmsfci.in/css/calendar.css"> -->
+
+<!-- Fontawesome -->
+<link href="./fci_files/font-awesome.min.css" rel="stylesheet">
+<!-- <link rel="stylesheet" href="https://ers.hrmsfci.in/css/la-module-css/lta-style.css"> -->
+<link rel="stylesheet" href="./fci_files/kendo.default-v2.min.css">
+<link rel="stylesheet" href="./fci_files/mainDashboard.css">
+
+<style>
+    i.fa-question-circle{
+        display:none;
+    }
+</style>
+</head>
+
+<body class="skin-blue sidebar-mini">
+<script src="./fci_files/dashboardTheme.js.download"></script>
+<div class="wrapper">
+  <style>
+a.main_logo {
+    display: flex;
+    align-items: center;
+}
+</style>
+
+<!-- New loader -->
+<div class="theLoader" style="display: none;">
+  <div class="draw"><img src="./fci_files/letter_img.png"></div>
+    
+</div>
+
+          <!-- new Header -->
+      <header class="main-header">
+      <!--<a href="#" class="logo" > <span class="logo-mini"><b>KHive</b></span> <span class="logo-lg"><b>KloudHive</b></span> </a>-->
+      <nav class="navbar navbar-static-top">
+        <div class="row">
+          <div class="col-xs-4 col-sm-4 col-md-4 col-lg-6">
+            <div id="Kellton_logo">
+              <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>  
+              <a href="https://ers.hrmsfci.in/#" class="main_logo">
+                <img src="./fci_files/fci_logo.svg" class="img-responsive" width="90px;" alt="Food Corporation of India">
+                <span class="hidden-lg">FCI HRMS</span>
+                <span class="visible-lg">FCI HUMAN RESOURCE MANAGEMENT SYSTEM</span>
+              </a> 
+            </div>
+          </div>
+          <div class="col-xs-8 col-sm-8 col-md-8 col-lg-6">
+            <div class="navbar-custom-menu">
+              <ul class="nav navbar-nav">
+                <li class="theme-controls hidden-sm hidden-xs">
+                  
+                  <a href="https://ers.hrmsfci.in/#" class="small-font" data-fontsize="font-sm">Aa</a>
+                  <a href="https://ers.hrmsfci.in/#" class="default-font active" data-fontsize="font-md">Aa</a>
+                  <a href="https://ers.hrmsfci.in/#" class="large-font" data-fontsize="font-lg">Aa</a>
+                </li>
+                
+                
+                <!-- User Account: style can be found in dropdown.less -->
+                <!-- <li class="dropdown user user-menu">
+                  <a href="#" class="dropdown-toggle profile-icon " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="profileimg">Hi,<span class="name">Rahul</span><img src="images/profile-icon.png" alt="" onerror="this.src='../images/profile-icon.png'" /></span> <span class=""><i class="fa fa-angle-down"></i></span></a>
+                 
+                </li> -->
+                <!--
+                  <li class="login-profile">
+                   <div> <span> English </span>|<span> Hindi </span> </div>
+                   <div class="hidden-xs"> Garige Srisylam (GS) </div>
+                  </li>
+                  -->
+              </ul>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header> 
+<div class="content-wrapper ml-0" style="min-height: 488px;">
+       <!-- =========== Content start here==================================== -->
+
+<style>
+    .k-widget.form-control .k-input {
+    padding: .5rem .75rem;
+    height: 48px;
+}
+    .k-pdf-export .max-height-table{
+        max-height:none;
+    }
+    .k-pdf-export a,.k-pdf-export .profile-image{
+        border:none !important;
+    }
+    .pdf-heading{
+        text-align:center;
+        font-size:20px;
+        display:none;
+    }
+    .k-pdf-export .pdf-heading{
+        text-align:center;
+        font-size:20px;
+        display:block;
+    }
+
+</style>
+<script src="./fci_files/kendo.custom.js.download"></script>
+
+
+<section class="content" id="myCanvas">
+<div class="box no-border">
+
+    <div class="my-profile-wrapper cardex-form pd-15">
+        <div class="outside_border" data-name="ER Sheet">
+            <div class="profile-box mt-15">
+
+            <form action="https://ers.hrmsfci.in/#" id="role-master-search" class="search-filters clearfix">
+                <div class="row">
+                    <div class="col-sm-12 col-md-3">
+                        <div class="form-group tool-tip">
+                            <label for="">Employee Name</label>
+                            <input type="text" id="emp_number" name="employee_name" class="form-control">
+                            <input type="hidden" value="" id="manager-id">
+                        </div>
+                        <div></div>
+                        <span class="text-danger mt-5 show">
+                        <p id="employee-id-err"></p>
+                        </span>
+                    </div>
+                    <div class="col-sm-12 col-md-3">
+                        <div class="form-group">
+                        <div class="action-btns">
+                        <button type="button" onclick="return validateFilter();" class="btn btn-primary">Get Results</button>
+                        <!-- <a href="./employee-input.html" class="btn btn-default" style="margin-left:8px;">Add Employee Data</a> -->
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+                <div id="table_main_employees" class="t_emp" style="display:none">
+                <div class="row">
+                        <div class="col-sm-12">
+                            <div class="name-seprator" data-name="Employees"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- table Transfer Profile  starts -->
+                   
+                    <div class="data-table-main mt-15 table-responsive max-height-table" style="max-height: 200px; overflow: auto;">
+                        <table id="emp_table" class="table table-striped display data-table-main-in">
+                            <thead>
+                                <tr>
+                                <th class="included_column">S.No</th>
+                                <th class="included_column">Employee Name</th>
+                                <th class="included_column">Employee Id</th>
+                                <th class="included_column">Designation</th>
+                                <th class="included_column">place of posting</th>
+                                <th class="no-sort">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                               
+                            </tbody>
+                        </table>
+                    </div>
+                  
+
+                    </div>
+                   
+
+
+                <hr>
+
+                <div id="download-er">
+                <h4 class="pdf-heading">ER Sheet</h4>
+                <div class="tab_employee" id="tab_name" style="display:none">
+                	<div class="last_updated" style="text-align: right"><span class="etitle">Last Updated on: </span> <span id="last_updated" class="oeid"></span>
+                    </div>
+                <div class="row">
+                        <div class="col-sm-12">
+                            <div class="name-seprator"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="box no-border">
+                            <div class="row box-body profile-block">
+                                <div class="col-sm-12 col-md-2 mt-15 margin-r-0 cardex-image-section text-center">
+                                    <div class=" profile-img_wrap ">
+                                        <div class="profile-image">
+
+                                            <img src="https://ers.hrmsfci.in/" class="img-responsive" id="src_image" alt="profile image">
+                                            <div class="edit-profile-btn right-0">
+                                                <div class="img-upload">
+                                                    <div class="upload-inner">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-9 cardex-filter-section  mbottom mt-15">
+                                    <div class="col-md-4 mbottom"><span class="etitle">Employee Name:</span> <span class="enumber" id="employee_name"></span>
+                                    </div>
+                                    
+                                    <div class="col-md-4 mbottom"><span class="etitle">Division
+                                            :</span> <span id="division" class="edivision"></span></div>
+                                    <div class="col-md-4 mbottom"><span class="etitle">Section
+                                            :</span> <span id="section" class="esection"></span>
+                                    </div>
+                                    <div class="col-md-4 mbottom"><span class="etitle">Cadre
+                                            :</span> <span id="cadre" class="ecadre"></span></div>
+                                    <div class="col-md-4 mbottom"><span class="etitle">Category
+                                            :</span> <span id="category" class="ecadre">I</span></div>
+                                            <div class="col-md-4 mbottom"><span class="etitle">DOB: </span> <span id="dob" class="oeid"></span>
+                                    </div>
+                                    
+                                    <div class="col-md-4 mbottom"><span class="etitle">Mode of joining :</span> <span id="mode_of_joining" class="emode"></span>
+                                    </div>
+
+                                    <div class="col-md-4 mbottom"><span class="etitle">Official Email ID : </span> <span id="email_id" class="oeid"></span>
+                                    </div>
+
+                                    <div class="col-md-4 mbottom"><span class="etitle">Designation
+                                            :</span> <span id="designation" class="edesignation"></span>
+                                    </div>
+
+                                    <div class="col-md-4 mbottom"><span class="etitle"> Present Place Of Posting: </span> <span id="pre_posting" class="oeid"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- Transfer Profile starts -->
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="name-seprator" data-name="Transfer Profile"></div>
+                        </div>
+                    </div>
+                    <!-- table Transfer Profile  starts -->
+                    <div class="data-table-main mt-15 table-responsive max-height-table">
+                        <table id="transfer" class="table table-striped display data-table-main-in">
+                            <thead>
+                                <tr>
+                                <th class="included_column">S.No</th>
+                                <th class="included_column">Office</th>
+                                <th class="included_column">Designation</th>
+                                <th class="included_column">From Date</th>
+                                <th class="included_column">To Date</th>
+                                <th class="included_column">Joining Time From Date</th>
+                                <th class="included_column">Joining Time Till Date</th>
+                                <th class="included_column">Zone</th>
+                                <th class="included_column">Region</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                               
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- table ends -->
+                    <!-- Transfer Profile ends -->
+
+                    <!-- Career Growth and Succession Profile starts -->
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="name-seprator" data-name="Career Growth and Succession Profile"></div>
+                        </div>
+                    </div>
+                    <!-- table Promotion and Fixation Profile  starts -->
+                    <div class="data-table-main mt-15 table-responsive max-height-table">
+                        <table id="career" class="table table-striped display data-table-main-in">
+                            <thead>
+                                <tr>
+                                <th class="included_column">S.No</th>
+                                <th class="included_column">Office</th>
+                                <th class="included_column">Previous Designation</th>
+                                <th class="included_column">New Designation</th>
+                                <th class="included_column">Date of Appointment to New Post</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- table ends -->
+                    <!-- Career Growth and Succession Profile ends -->
+
+                    <!-- Competency And Learning Profile starts -->
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="name-seprator" data-name="Competency And Learning Profile"></div>
+                        </div>
+                    </div>
+                    <!-- table Competency And Learning Profile  starts -->
+                    <div class="data-table-main mt-15 table-responsive max-height-table">
+                        <table id="learning" class="table table-striped display data-table-main-in">
+                            <thead>
+                                <tr>
+                                <th class="included_column">S.No</th>
+                                <th class="included_column">Competency Gap</th>
+                                <th class="included_column">Course Attended</th>
+                                <th class="included_column">Date of Training</th>
+ 
+                                </tr>
+                            </thead>
+                            <tbody>
+                               
+                                
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="clearfix mt-15  hide_in_pdf">
+                        <a onclick="exportPdf();" class="btn  btn-primary pull-right">Download</a>
+                    </div>
+
+                </div>
+                    <!-- table ends -->
+                    <!-- Competency And Learning Profile ends -->
+
+                   
+                <div>
+
+
+
+        </div>
+        
+    </div>
+
+
+
+</div>
+</div>
+
+<div class="no_data" id="no-data" style="display:none">
+    <h2 id="abc" class="text-center">No Data Found</h2>
+    </div>
+
+</div></div></section>
+
+<script>
+
+
+    var count = 1;
+    var career=1;
+    var learn=1;
+    var html='';
+    var localEmployeesCache = [];
+
+    function normalizeEmployee(raw, index) {
+        return {
+            id: Number(raw.id) || (index + 1),
+            employee_name: raw.employee_name || raw.name || '',
+            employee_id: raw.employee_id || '',
+            designation_name: raw.designation_name || raw.designation || '',
+            office_name: raw.office_name || raw.office || '',
+            division_name: raw.division_name || '',
+            section_name: raw.section_name || '',
+            cadre_title: raw.cadre_title || '',
+            mode_of_joining: raw.mode_of_joining || '',
+            category_title: raw.category_title || '',
+            date_of_birth: raw.date_of_birth || null,
+            updated_on: raw.updated_on || null,
+            profile_image: raw.profile_image || null,
+            transferDetails: Array.isArray(raw.transferDetails) ? raw.transferDetails : [],
+            careerGrowth: Array.isArray(raw.careerGrowth) ? raw.careerGrowth : [],
+            learning: Array.isArray(raw.learning) ? raw.learning : []
+        };
+    }
+
+    function parseEmployeesText(text) {
+        if (!text) {
+            return [];
+        }
+        var trimmed = text.trim();
+        if (!trimmed) {
+            return [];
+        }
+        try {
+            var parsed = JSON.parse(trimmed);
+            if (Array.isArray(parsed)) {
+                return parsed.map(normalizeEmployee);
+            }
+        } catch (error) {
+            console.log(error);
+        }
+        return [];
+    }
+
+    function getStoredEmployees() {
+        try {
+            var stored = localStorage.getItem('employeesData');
+            if (!stored) {
+                return [];
+            }
+            return parseEmployeesText(stored);
+        } catch (error) {
+            console.log(error);
+            return [];
+        }
+    }
+
+    function loadEmployeesData() {
+        var storedEmployees = getStoredEmployees();
+        if (storedEmployees.length > 0) {
+            localEmployeesCache = storedEmployees;
+            return fetch('./api/employees?ts=' + Date.now())
+                .then(function (response) {
+                    if (!response.ok) {
+                        return localEmployeesCache;
+                    }
+                    return response.json();
+                })
+                .then(function (data) {
+                    if (Array.isArray(data)) {
+                        localEmployeesCache = data.map(normalizeEmployee);
+                        localStorage.setItem('employeesData', JSON.stringify(localEmployeesCache));
+                    }
+                    return localEmployeesCache;
+                })
+                .catch(function () {
+                    return localEmployeesCache;
+                });
+        }
+
+        return fetch('./api/employees?ts=' + Date.now())
+            .then(function (response) {
+                if (!response.ok) {
+                    return [];
+                }
+                return response.json();
+            })
+            .then(function (data) {
+                if (Array.isArray(data)) {
+                    localEmployeesCache = data.map(normalizeEmployee);
+                    localStorage.setItem('employeesData', JSON.stringify(localEmployeesCache));
+                    return localEmployeesCache;
+                }
+                return [];
+            })
+            .catch(function () {
+                return fetch('./employees.txt?ts=' + Date.now())
+                    .then(function (response) {
+                        if (!response.ok) {
+                            return '[]';
+                        }
+                        return response.text();
+                    })
+                    .then(function (text) {
+                        localEmployeesCache = parseEmployeesText(text);
+                        return localEmployeesCache;
+                    })
+                    .catch(function () {
+                        localEmployeesCache = [];
+                        return localEmployeesCache;
+                    });
+            });
+    }
+
+    function formatDateFromValue(value) {
+        if (!value) {
+            return '';
+        }
+        var date = new Date(value);
+        if (isNaN(date.getTime())) {
+            return '';
+        }
+        var dd = date.getDate();
+        var mm = date.getMonth() + 1;
+        var yyyy = date.getFullYear();
+        if (dd < 10) {
+            dd = '0' + dd;
+        }
+        if (mm < 10) {
+            mm = '0' + mm;
+        }
+        return dd + '/' + mm + '/' + yyyy;
+    }
+
+    function formatDateTimeFromValue(value) {
+        if (!value) {
+            return '';
+        }
+        var date = new Date(value);
+        if (isNaN(date.getTime())) {
+            return '';
+        }
+        var dd = date.getDate();
+        var mm = date.getMonth() + 1;
+        var yyyy = date.getFullYear();
+        var hr = date.getHours();
+        var min = date.getMinutes();
+        var sec = date.getSeconds();
+        if (dd < 10) {
+            dd = '0' + dd;
+        }
+        if (mm < 10) {
+            mm = '0' + mm;
+        }
+        if (hr < 10) {
+            hr = '0' + hr;
+        }
+        if (min < 10) {
+            min = '0' + min;
+        }
+        if (sec < 10) {
+            sec = '0' + sec;
+        }
+        return dd + '/' + mm + '/' + yyyy + ' ' + hr + ':' + min + ':' + sec;
+    }
+    function getData(id){
+        var employee = null;
+        for (var i = 0; i < localEmployeesCache.length; i++) {
+            if (Number(localEmployeesCache[i].id) === Number(id)) {
+                employee = localEmployeesCache[i];
+                break;
+            }
+        }
+
+        if (!employee) {
+            $('#tab_name').hide();
+            return false;
+        }
+
+        $('#tab_name').show();
+        $("#transfer tbody").empty();
+        $("#career tbody").empty();
+        $("#learning tbody").empty();
+
+        document.getElementById("employee_name").innerHTML = employee.employee_name || '';
+        document.getElementById("section").innerHTML = employee.section_name || '';
+        document.getElementById("designation").innerHTML = employee.designation_name || '';
+        document.getElementById("cadre").innerHTML = employee.cadre_title || '';
+        document.getElementById("mode_of_joining").innerHTML = employee.mode_of_joining || '';
+        document.getElementById("division").innerHTML = employee.division_name || '';
+        document.getElementById("category").innerHTML = employee.category_title || '';
+        document.getElementById("email_id").innerHTML = '*****';
+        document.getElementById("last_updated").innerHTML = formatDateTimeFromValue(employee.updated_on);
+        document.getElementById("dob").innerHTML = formatDateFromValue(employee.date_of_birth);
+        document.getElementById("pre_posting").innerHTML = employee.office_name || '';
+        $('#src_image').attr('src', 'https://ers.hrmsfci.in/images/user.png');
+
+        var transferList = Array.isArray(employee.transferDetails) ? employee.transferDetails : [];
+        for (var transferIndex = 0; transferIndex < transferList.length; transferIndex++) {
+            var transferItem = transferList[transferIndex];
+            var transfer = '';
+            transfer += '<tr id=row-' + (transferIndex + 1) + '>';
+            transfer += '    <td>' + (transferIndex + 1) + '</td>';
+            transfer += '    <td>' + (transferItem.office_name || '') + '</td>';
+            transfer += '    <td>' + (transferItem.designation_name || '') + '</td>';
+            transfer += '    <td>' + formatDateFromValue(transferItem.from_date) + '</td>';
+            transfer += '    <td>' + formatDateFromValue(transferItem.to_date) + '</td>';
+            transfer += '    <td>' + formatDateFromValue(transferItem.joining_time_from) + '</td>';
+            transfer += '    <td>' + formatDateFromValue(transferItem.joining_time_to) + '</td>';
+            transfer += '    <td>' + (transferItem.zone_name || '') + '</td>';
+            transfer += '    <td>' + (transferItem.region_name || '') + '</td>';
+            transfer += '</tr>';
+            $("#transfer tbody").append(transfer);
+        }
+
+        var careerList = Array.isArray(employee.careerGrowth) ? employee.careerGrowth : [];
+        for (var careerIndex = 0; careerIndex < careerList.length; careerIndex++) {
+            var careerItem = careerList[careerIndex];
+            var promotion = '';
+            promotion += '<tr id=row-' + (careerIndex + 1) + '>';
+            promotion += '    <td>' + (careerIndex + 1) + '</td>';
+            promotion += '    <td>' + (careerItem.office_name || '') + '</td>';
+            promotion += '    <td>' + (careerItem.old_designation_name || '') + '</td>';
+            promotion += '    <td>' + (careerItem.designation_name || '') + '</td>';
+            promotion += '    <td>' + formatDateFromValue(careerItem.Date_Of_Appoinment_To_New_Post) + '</td>';
+            promotion += '</tr>';
+            $("#career tbody").append(promotion);
+        }
+
+        var learningList = Array.isArray(employee.learning) ? employee.learning : [];
+        for (var learnIndex = 0; learnIndex < learningList.length; learnIndex++) {
+            var learningItem = learningList[learnIndex];
+            var learning = '';
+            learning += '<tr id=row-' + (learnIndex + 1) + '>';
+            learning += '    <td>' + (learnIndex + 1) + '</td>';
+            learning += '    <td>' + (learningItem.Competency_Gap || '') + '</td>';
+            learning += '    <td>' + (learningItem.course_name || '') + '</td>';
+            learning += '    <td>' + formatDateFromValue(learningItem.Date_Of_Training) + '</td>';
+            learning += '</tr>';
+            $("#learning tbody").append(learning);
+        }
+
+        var body = $("html, body");
+        var offset_top = $(".tab_employee").offset().top;
+        body.animate({scrollTop:offset_top}, 500, 'linear');
+        return false;
+    }
+
+    var emps=1;
+
+    function validateFilter() {
+        $('#tab_name').hide();
+
+        var searchText = $('#emp_number').val();
+        if (searchText == '' || searchText.length < 3) {
+            $("#employee-id-err").empty().append('Please Enter employee Name  with atleast three Characters');
+            $('#table_main_employees').hide();
+            return false;
+        }
+
+        $('#table_main_employees').show();
+        $("#employee-id-err").empty();
+        $('#no-data').hide();
+        $("#emp_table tbody").empty();
+
+        showLoader();
+        loadEmployeesData().then(function (employees) {
+            var query = String(searchText).toLowerCase();
+            var filtered = employees.filter(function (item) {
+                return String(item.employee_name || '').toLowerCase().indexOf(query) !== -1;
+            });
+
+            if (filtered.length === 0) {
+                $('#no-data').show();
+                $('#table_main_employees').hide();
+                return;
+            }
+
+            var emps = 1;
+            for (var i = 0; i < filtered.length; i++) {
+                var employee = filtered[i];
+                var emp = '';
+                emp += '<tr id=row-' + emps + '>';
+                emp += '    <td>' + emps + '</td>';
+                emp += '    <td>' + (employee.employee_name || '') + '</td>';
+                emp += '    <td>' + (employee.employee_id || '') + '</td>';
+                emp += '    <td>' + (employee.designation_name || '') + '</td>';
+                emp += '    <td>' + (employee.office_name || '') + '</td>';
+                emp += '    <td><a class="btn posh-remove" onclick="return getData(' + employee.id + ')" data-row="' + emps + '"><i class="fa fa-eye"></i></a></td>';
+                emp += '</tr>';
+                $("#emp_table tbody").append(emp);
+                emps++;
+            }
+        }).finally(function () {
+            hideLoader();
+        });
+
+        return false;
+    }
+
+
+    function exportPdf(){
+        kendo.drawing
+        .drawDOM("#download-er", 
+        { 
+            paperSize: "A4",
+            margin: { top: "0.5cm", bottom: "1cm", right: "0.5cm", left: "0.5cm" },
+            scale: 0.7,
+            height: 500,
+            landscape:true,
+        })
+            .then(function(group){
+            kendo.drawing.pdf.saveAs(group, "ProfilePortfolio.pdf")
+        });
+    }
+</script>
+
+  </div>
+  <footer style="margin-left:0px;" class="main-footer-static-inner main-footer "> Copyright © 2020 Food Corporation of India | Powered by Konnect</footer>
+       
+
+<!-- =========== wrapper end here==================================== -->
+</div>
+
+<script src="./fci_files/bootstrap.min.js.download"></script>
+<!-- <script src="https://ers.hrmsfci.in/js/bootstrap-datepicker.js"></script> -->
+<!-- DataTables -->
+<script src="./fci_files/jquery.dataTables.min.js.download"></script>
+<script src="./fci_files/dataTables.bootstrap.min.js.download"></script>
+<script src="./fci_files/app.min.js.download"></script>
+<script src="./fci_files/select2.full.min.js.download"></script>
+<script src="./fci_files/scripts.js.download"></script>
+<!-- <script src="https://ers.hrmsfci.in/js/employee-relation.js"></script> -->
+<script src="./fci_files/dataTables.buttons.min.js.download"></script>
+<script src="./fci_files/buttons.flash.min.js.download"></script>
+<script src="./fci_files/jszip.min.js.download"></script>
+<!-- <script src="https://ers.hrmsfci.in/js/pdfmake.min.js"></script> -->
+<script src="./fci_files/buttons.print.min.js.download"></script>
+<script src="./fci_files/buttons.html5.min.js.download"></script>
+<script src="./fci_files/vfs_fonts.js.download"></script>
+<script src="./fci_files/kendo.custom.js.download"></script>
+<script src="./fci_files/kendo.all.min.js.download"></script>
+
+
+<script src="./fci_files/jquery.validate.js.download"></script>
+<!-- <script src="https://ers.hrmsfci.in/js/fullcalendar/moment.min.js"></script> -->
+<!-- <script src="https://ers.hrmsfci.in/js/fullcalendar/fullcalendar.min.js"></script> -->
+<!-- <script src="https://ers.hrmsfci.in/js/calendar.js"></script> -->
+<script src="./fci_files/kendo.all.min.js.download"></script>
+          
+
+</body></html>

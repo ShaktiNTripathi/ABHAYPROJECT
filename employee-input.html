@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Employee Data Input</title>
+  <link href="./fci_files/bootstrap.css" rel="stylesheet" />
+  <style>
+    body { background: #f5f7fa; }
+    .card { max-width: 860px; margin: 30px auto; background: #fff; border-radius: 10px; padding: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+    .actions { display: flex; gap: 10px; flex-wrap: wrap; }
+    .table-wrap { max-height: 300px; overflow: auto; margin-top: 20px; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h3>Employee Data Input</h3>
+    <p>Form submit par data Node API (<b>/api/employees</b>) me save hoga. API unavailable ho to localStorage fallback use hoga.</p>
+
+    <form id="employeeForm" class="row">
+      <div class="col-sm-6 form-group">
+        <label>Employee Name</label>
+        <input type="text" class="form-control" id="employee_name" required />
+      </div>
+      <div class="col-sm-6 form-group">
+        <label>Employee Id</label>
+        <input type="text" class="form-control" id="employee_id" required />
+      </div>
+      <div class="col-sm-6 form-group">
+        <label>Designation</label>
+        <input type="text" class="form-control" id="designation_name" required />
+      </div>
+      <div class="col-sm-6 form-group">
+        <label>Place of Posting</label>
+        <input type="text" class="form-control" id="office_name" required />
+      </div>
+      <div class="col-sm-6 form-group">
+        <label>Division</label>
+        <input type="text" class="form-control" id="division_name" />
+      </div>
+      <div class="col-sm-6 form-group">
+        <label>Section</label>
+        <input type="text" class="form-control" id="section_name" />
+      </div>
+      <div class="col-sm-6 form-group">
+        <label>Cadre</label>
+        <input type="text" class="form-control" id="cadre_title" />
+      </div>
+      <div class="col-sm-6 form-group">
+        <label>Mode of Joining</label>
+        <input type="text" class="form-control" id="mode_of_joining" />
+      </div>
+      <div class="col-sm-6 form-group">
+        <label>Category</label>
+        <input type="text" class="form-control" id="category_title" />
+      </div>
+      <div class="col-sm-6 form-group">
+        <label>Date of Birth</label>
+        <input type="date" class="form-control" id="date_of_birth" />
+      </div>
+      <div class="col-sm-12 actions">
+        <button type="submit" class="btn btn-primary">Save Employee</button>
+        <button type="button" class="btn btn-default" id="downloadTxtBtn">Download employees.txt</button>
+        <label class="btn btn-default" style="margin-bottom:0;">
+          Import employees.txt
+          <input type="file" id="importFile" accept=".txt,.json" style="display:none;" />
+        </label>
+        <a href="./fci.html" class="btn btn-success">Go to Search Page</a>
+      </div>
+    </form>
+
+    <div class="table-wrap">
+      <table class="table table-striped" id="employeesTable">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Employee Id</th>
+            <th>Designation</th>
+            <th>Posting</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+
+  <script>
+    const STORAGE_KEY = 'employeesData';
+
+    function parseEmployeesText(text) {
+      if (!text) return [];
+      const trimmed = String(text).trim();
+      if (!trimmed) return [];
+      try {
+        const data = JSON.parse(trimmed);
+        return Array.isArray(data) ? data : [];
+      } catch (error) {
+        return [];
+      }
+    }
+
+    function getEmployeesFromStorage() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        return parseEmployeesText(raw);
+      } catch (error) {
+        return [];
+      }
+    }
+
+    async function getEmployees() {
+      try {
+        const response = await fetch('./api/employees?ts=' + Date.now());
+        if (response.ok) {
+          const data = await response.json();
+          if (Array.isArray(data)) {
+            saveEmployees(data);
+            return data;
+          }
+        }
+      } catch (error) {
+      }
+      return getEmployeesFromStorage();
+    }
+
+    function saveEmployees(data) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    }
+
+    async function renderTable() {
+      const data = await getEmployees();
+      const tbody = document.querySelector('#employeesTable tbody');
+      tbody.innerHTML = '';
+      data.forEach((emp, index) => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td>${index + 1}</td>
+          <td>${emp.employee_name || ''}</td>
+          <td>${emp.employee_id || ''}</td>
+          <td>${emp.designation_name || ''}</td>
+          <td>${emp.office_name || ''}</td>
+        `;
+        tbody.appendChild(row);
+      });
+    }
+
+    function downloadEmployeesTxt() {
+      const data = getEmployeesFromStorage();
+      const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'text/plain;charset=utf-8' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = 'employees.txt';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(link.href);
+    }
+
+    async function tryLoadFromEmployeesTxtOnce() {
+      if (getEmployeesFromStorage().length > 0) {
+        return;
+      }
+      try {
+        const response = await fetch('./employees.txt?ts=' + Date.now());
+        if (!response.ok) {
+          return;
+        }
+        const text = await response.text();
+        const data = parseEmployeesText(text);
+        if (data.length > 0) {
+          saveEmployees(data);
+        }
+      } catch (error) {
+      }
+    }
+
+    document.getElementById('employeeForm').addEventListener('submit', async function (event) {
+      event.preventDefault();
+
+      const employee = {
+        employee_name: document.getElementById('employee_name').value.trim(),
+        employee_id: document.getElementById('employee_id').value.trim(),
+        designation_name: document.getElementById('designation_name').value.trim(),
+        office_name: document.getElementById('office_name').value.trim(),
+        division_name: document.getElementById('division_name').value.trim(),
+        section_name: document.getElementById('section_name').value.trim(),
+        cadre_title: document.getElementById('cadre_title').value.trim(),
+        mode_of_joining: document.getElementById('mode_of_joining').value.trim(),
+        category_title: document.getElementById('category_title').value.trim(),
+        date_of_birth: document.getElementById('date_of_birth').value || null,
+        updated_on: new Date().toISOString(),
+        transferDetails: [],
+        careerGrowth: [],
+        learning: []
+      };
+
+      try {
+        const response = await fetch('./api/employees', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(employee)
+        });
+
+        if (!response.ok) {
+          throw new Error('API save failed');
+        }
+
+        await renderTable();
+        this.reset();
+        alert('Employee API me save ho gaya.');
+      } catch (error) {
+        const employees = getEmployeesFromStorage();
+        const nextId = employees.reduce((maxId, item) => {
+          const current = Number(item.id) || 0;
+          return current > maxId ? current : maxId;
+        }, 0) + 1;
+        employee.id = nextId;
+        employees.push(employee);
+        saveEmployees(employees);
+        await renderTable();
+        this.reset();
+        alert('API unavailable tha, data localStorage me save hua. Backup ke liye employees.txt download kar sakte ho.');
+      }
+    });
+
+    document.getElementById('downloadTxtBtn').addEventListener('click', downloadEmployeesTxt);
+
+    document.getElementById('importFile').addEventListener('change', function (event) {
+      const file = event.target.files && event.target.files[0];
+      if (!file) {
+        return;
+      }
+      const reader = new FileReader();
+      reader.onload = function () {
+        const data = parseEmployeesText(reader.result);
+        if (data.length === 0) {
+          alert('Invalid employees.txt file.');
+          return;
+        }
+        saveEmployees(data);
+        renderTable();
+        alert('employees.txt import ho gaya.');
+      };
+      reader.readAsText(file, 'utf-8');
+      event.target.value = '';
+    });
+
+    tryLoadFromEmployeesTxtOnce().finally(function () {
+      renderTable();
+    });
+  </script>
+</body>
+</html>

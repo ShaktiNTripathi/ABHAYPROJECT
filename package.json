@@ -1,0 +1,9 @@
+{
+  "name": "fci-employee-search",
+  "version": "1.0.0",
+  "private": true,
+  "description": "FCI employee search and input app with Vercel Node API",
+  "engines": {
+    "node": ">=18"
+  }
+}
