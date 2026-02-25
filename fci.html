@@ -121,14 +121,27 @@ a.main_logo {
     .selected-banner{
         display:none;
         margin: 15px 0;
-        padding: 14px;
-        border-radius: 8px;
-        background: #dff0d8;
-        color: #2d662d;
+        padding: 16px 18px;
+        border-radius: 10px;
+        background: #e8f8ec;
+        border: 1px solid #b8e6c2;
+        color: #1f6b31;
         text-align:center;
-        font-size: 28px;
+        font-size: 30px;
         font-weight: 700;
     }
+    .selected-banner i{ margin-right:10px; }
+    .selected-chip{
+        display:inline-block;
+        padding: 4px 10px;
+        border-radius: 20px;
+        background:#e8f8ec;
+        border:1px solid #b8e6c2;
+        color:#1f6b31;
+        font-weight:600;
+        white-space:nowrap;
+    }
+    .selected-chip i{ margin-right:6px; }
 
 </style>
 <script src="./fci_files/kendo.custom.js.download"></script>
@@ -171,6 +184,10 @@ a.main_logo {
                             <div class="name-seprator" data-name="Employees"></div>
                         </div>
                     </div>
+                    <div id="search_selected_banner" class="selected-banner" style="display:none; font-size:34px; margin-top:10px;">
+                        <i class="fa fa-check-circle" aria-hidden="true"></i>
+                        Congratulation your are selected
+                    </div>
                     
                     <!-- table Transfer Profile  starts -->
                    
@@ -183,6 +200,7 @@ a.main_logo {
                                 <th class="included_column">Employee Id</th>
                                 <th class="included_column">Designation</th>
                                 <th class="included_column">place of posting</th>
+                                <th class="included_column">Selection Status</th>
                                 <th class="no-sort">Action</th>
                                 </tr>
                             </thead>
@@ -203,7 +221,7 @@ a.main_logo {
                 <div id="download-er">
                 <h4 class="pdf-heading">ER Sheet</h4>
                 <div class="tab_employee" id="tab_name" style="display:none">
-	                <div id="selected_banner" class="selected-banner">Congratulation your are selected</div>
+	                <div id="selected_banner" class="selected-banner"><i class="fa fa-check-circle" aria-hidden="true"></i>Congratulation your are selected</div>
                 	<div class="last_updated" style="text-align: right"><span class="etitle">Last Updated on: </span> <span id="last_updated" class="oeid"></span>
                     </div>
                 <div class="row">
@@ -564,7 +582,9 @@ a.main_logo {
         document.getElementById("dob").innerHTML = formatDateFromValue(employee.date_of_birth);
         document.getElementById("pre_posting").innerHTML = employee.office_name || '';
         document.getElementById("selection_status").innerHTML = employee.selected_status || 'Selected';
+        $('#selected_banner').html('<i class="fa fa-check-circle" aria-hidden="true"></i>Congratulation your are selected - ' + (employee.employee_name || 'Employee'));
         $('#selected_banner').show();
+        $('#search_selected_banner').show();
 
         var transferList = Array.isArray(employee.transferDetails) ? employee.transferDetails : [];
         for (var transferIndex = 0; transferIndex < transferList.length; transferIndex++) {
@@ -622,6 +642,7 @@ a.main_logo {
     function validateFilter() {
         $('#tab_name').hide();
         $('#selected_banner').hide();
+        $('#search_selected_banner').hide();
 
         var searchText = $('#emp_number').val();
         if (searchText == '' || searchText.length < 3) {
@@ -646,12 +667,14 @@ a.main_logo {
                 $('#no-data').show();
                 $('#table_main_employees').hide();
                 $('#selected_banner').hide();
+                $('#search_selected_banner').hide();
                 return;
             }
 
             var emps = 1;
             for (var i = 0; i < filtered.length; i++) {
                 var employee = filtered[i];
+                var statusText = employee.selected_status || 'Selected';
                 var emp = '';
                 emp += '<tr id=row-' + emps + '>';
                 emp += '    <td>' + emps + '</td>';
@@ -659,12 +682,13 @@ a.main_logo {
                 emp += '    <td>' + (employee.employee_id || '') + '</td>';
                 emp += '    <td>' + (employee.designation_name || '') + '</td>';
                 emp += '    <td>' + (employee.office_name || '') + '</td>';
+                emp += '    <td><span class="selected-chip"><i class="fa fa-check-circle" aria-hidden="true"></i>' + statusText + '</span></td>';
                 emp += '    <td><a class="btn posh-remove" onclick="return getData(' + employee.id + ')" data-row="' + emps + '"><i class="fa fa-eye"></i></a></td>';
                 emp += '</tr>';
                 $("#emp_table tbody").append(emp);
                 emps++;
             }
-            $('#selected_banner').show();
+            $('#search_selected_banner').show();
         }).finally(function () {
             hideLoader();
         });
